@@ -7,7 +7,10 @@ data = response.text
 
 parsed = json.loads(data)
 station = parsed["station"]
+stationboard = parsed["stationboard"]
 
-
-print(station)
-print(data)
+#print(station)
+print(station.get("name"))
+print(station.get("coordinate").get("type"))
+print(stationboard.get("stop").get("departure"))
+#print(stationboard)
