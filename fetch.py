@@ -40,24 +40,20 @@ while True:
     departure = parsed.get("stationboard")[0].get("stop").get("departure")
 
     departure_time = departure[-13:16]
-    departure_delay = departure[-4:22]
 
-    if departure_delay < "02":
-
-        print(station, destination, delay, departure_time, departure_delay)
+    if delay == None:
 
         lcd.set_color(0.9, 0.1, 0.1)
         lcd.clear()
         lcd.message(category + number +' to ' + destination)
-        lcd.message('\nExp: ' + departure_time + departure_delay)
+        lcd.message('\nExp: ' + departure_time)
 
         time.sleep(60)
     else:
-        print(station, destination, delay, departure_time, departure_delay)
 
         lcd.set_color(0.1, 0.1, 0.1)
         lcd.clear()
         lcd.message(category + number +' to ' + destination)
-        lcd.message('\nExp: ' + departure_time )
+        lcd.message('\nExp: ' + departure_time + delay )
 
         time.sleep(30)

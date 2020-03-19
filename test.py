@@ -1,18 +1,32 @@
 import requests
 import json
+import sys
+import time
 
+url = "http://transport.opendata.ch/v1/stationboard?station=basel&limit=5"
 
-url = "http://transport.opendata.ch/v1/stationboard?station=lucerne&limit=1"
+while True:
+    response = requests.get(url)
+    data = response.text
 
-response = requests.get(url)
-data = response.text
+    parsed = json.loads(data)
+    for i in range(5):
 
-parsed = json.loads(data)
+        station = (parsed.get("station").get("name"))
+        destination = (parsed.get("stationboard")[i].get("to"))
+        delay = str(parsed.get("stationboard")[i].get("stop").get("delay"))
+        name = (parsed.get("stationboard")[i].get("name"))
+        number = (parsed.get("stationboard")[i].get("number"))
+        category = (parsed.get("stationboard")[i].get("category"))
+        departure = parsed.get("stationboard")[i].get("stop").get("departure")
+        departure_time = departure[-13:16]
 
-station = repr(parsed.get("station").get("name"))
-destination = repr(parsed.get("stationboard")[0].get("to"))
-delay = repr(parsed.get("stationboard")[0].get("stop").get("delay"))
-name = repr(parsed.get("stationboard")[0].get("name"))
-departure = parsed.get("stationboard")[0].get("stop").get("departure")
+        if delay == 'None':
 
-print(station, name, destination, delay, departure)
+            print(station, category+number, destination, departure_time)
+        else : 
+            print(station, (category+number), destination, departure_time, delay)
+    for x in range(4):
+        print('')
+    time.sleep(1)
+    
