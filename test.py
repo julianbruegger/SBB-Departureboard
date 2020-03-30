@@ -3,7 +3,7 @@ import json
 import sys
 import time
 
-url = "http://transport.opendata.ch/v1/stationboard?station=basel&limit=5"
+url = "http://transport.opendata.ch/v1/stationboard?station=lucerne&limit=5"
 
 while True:
     response = requests.get(url)
@@ -23,9 +23,19 @@ while True:
 
         if delay == 'None':
 
-            print(station, category+number, destination, departure_time)
+            
+            if category == 'RE':
+                print(station, number, destination, departure_time)
+            else:
+                print(station, (category+number), destination, departure_time)
         else : 
-            print(station, (category+number), destination, departure_time, delay)
+            
+            if category == 'RE':
+                print(station, (number), destination, departure_time, delay)
+            else:
+                print(station, (category+number), destination, departure_time, delay)
+
+            
     for x in range(4):
         print('')
     time.sleep(1)
