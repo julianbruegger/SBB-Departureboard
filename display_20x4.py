@@ -39,7 +39,7 @@ while True:
             lcd_string((station)+(" nach ")+(destination),LCD_LINE_1)
             lcd_string(number,LCD_LINE_2)
             lcd_string("Departure:",LCD_LINE_3)
-            lcd_string((departure_time)+(" Exp: +")+delay,LCD_LINE_4)
+            lcd_string((departure_time)+(" Exp: +")+(delay),LCD_LINE_4)
             print(station, (number), destination, departure_time, delay)
         else:
             print(station, (category+number), destination, departure_time, delay)
@@ -48,7 +48,7 @@ while True:
             lcd_string((station)+(" nach ")+(destination),LCD_LINE_1)
             lcd_string(category+number,LCD_LINE_2)
             lcd_string("Departure:",LCD_LINE_3)
-            lcd_string((departure_time)+(" Exp: +")+delay,LCD_LINE_4)
+            lcd_string((departure_time)+(" Exp: +")+(delay),LCD_LINE_4)
 
     
     
